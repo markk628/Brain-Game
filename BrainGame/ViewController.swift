@@ -13,16 +13,20 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var pauseOutlet: UIButton!
     
-    @IBOutlet weak var helloLabel: UILabel!
+    @IBOutlet weak var color1Label: UILabel!
+    @IBOutlet weak var color2Label: UILabel!
     
     @IBAction func pausePressed(_ sender: UIButton) {
-        let randomIndex = Int.random(in: 0..<colors.count)
         print("paused")
-        helloLabel.text = colors[randomIndex]
+        color1Label.text = colors.randomElement()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        color1Label.text = colors.randomElement()
+        color2Label.text = colors.randomElement()
+
+
     }
 
 
