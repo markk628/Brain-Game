@@ -14,6 +14,7 @@
 		FE20DDD823FF6BEB00AC0C7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE20DDD723FF6BEB00AC0C7A /* Assets.xcassets */; };
 		FE20DDDB23FF6BEB00AC0C7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE20DDD923FF6BEB00AC0C7A /* LaunchScreen.storyboard */; };
 		FE72FD0C24075D7D0036FAC7 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE72FD0B24075D7D0036FAC7 /* FirstViewController.swift */; };
+		FE72FD0E24077EC30036FAC7 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE72FD0D24077EC30036FAC7 /* ResultViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		FE20DDDA23FF6BEB00AC0C7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE20DDDC23FF6BEB00AC0C7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE72FD0B24075D7D0036FAC7 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		FE72FD0D24077EC30036FAC7 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +62,9 @@
 			children = (
 				FE20DDCE23FF6BEA00AC0C7A /* AppDelegate.swift */,
 				FE20DDD023FF6BEA00AC0C7A /* SceneDelegate.swift */,
-				FE20DDD223FF6BEA00AC0C7A /* ViewController.swift */,
 				FE72FD0B24075D7D0036FAC7 /* FirstViewController.swift */,
+				FE20DDD223FF6BEA00AC0C7A /* ViewController.swift */,
+				FE72FD0D24077EC30036FAC7 /* ResultViewController.swift */,
 				FE20DDD423FF6BEA00AC0C7A /* Main.storyboard */,
 				FE20DDD723FF6BEB00AC0C7A /* Assets.xcassets */,
 				FE20DDD923FF6BEB00AC0C7A /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE72FD0E24077EC30036FAC7 /* ResultViewController.swift in Sources */,
 				FE20DDD323FF6BEA00AC0C7A /* ViewController.swift in Sources */,
 				FE20DDCF23FF6BEA00AC0C7A /* AppDelegate.swift in Sources */,
 				FE20DDD123FF6BEA00AC0C7A /* SceneDelegate.swift in Sources */,

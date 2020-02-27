@@ -26,7 +26,7 @@ class ViewController: UIViewController {
 
 
     @IBOutlet weak var timer: UILabel!
-    var time = 10
+    var time = 2
     var timer1 = Timer()
     
     
@@ -34,14 +34,15 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var color1Label: UILabel!
     @IBOutlet weak var color2Label: UILabel!
-    @IBOutlet weak var scoreResult: UILabel!
     
     @objc func action(){
         if time != 0 {
             time -= 1
             timer.text = "Timer: \(String(time))"
         } else {
-            scoreResult.isHidden = false
+            timer1.invalidate()
+            time = 2
+            performSegue(withIdentifier: "toResults", sender: self)
         }
     }
     
