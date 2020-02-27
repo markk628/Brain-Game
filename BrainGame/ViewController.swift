@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController {
     let colors = ["red", "blue", "yellow"]
     let textColors = [UIColor.red, UIColor.blue, UIColor.yellow]
+    var time = 5
+    var timer1 = Timer()
 
     
     func pulsate() {
@@ -26,9 +28,6 @@ class ViewController: UIViewController {
 
 
     @IBOutlet weak var timer: UILabel!
-    var time = 2
-    var timer1 = Timer()
-    
     
     @IBOutlet weak var pauseOutlet: UIButton!
     
@@ -40,8 +39,9 @@ class ViewController: UIViewController {
             time -= 1
             timer.text = "Timer: \(String(time))"
         } else {
+            time = 5
             timer1.invalidate()
-            time = 2
+            
             performSegue(withIdentifier: "toResults", sender: self)
         }
     }
@@ -63,11 +63,13 @@ class ViewController: UIViewController {
         color2Label.text = colors.randomElement()
         color2Label.textColor = textColors.randomElement()
         
-         timer1 = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.action), userInfo: nil, repeats: true)
+        timer1 = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.action), userInfo: nil, repeats: true)
 
 
     }
-
+    @IBAction func goBackToVC2(segue:UIStoryboardSegue){
+        timer1 = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.action), userInfo: nil, repeats: true)
+    }
 
 }
 

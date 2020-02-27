@@ -18,7 +18,8 @@ class FirstVc: UIViewController {
 
 
     }
-       
+    @IBAction func goBackToVC1(segue:UIStoryboardSegue){
+    }
     
 
 
