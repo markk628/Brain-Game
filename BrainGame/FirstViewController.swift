@@ -10,13 +10,9 @@ import UIKit
 
 class FirstVc: UIViewController {
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-
-
     }
     @IBAction func goBackToVC1(segue:UIStoryboardSegue){
     }

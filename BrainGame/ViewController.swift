@@ -44,11 +44,7 @@ enum Color: CaseIterable {
 }
 
 class ViewController: UIViewController {
-    let colors = ["red", "blue", "yellow"]
-    
-    
-    let textColors: [String] = ["red", "blue", "yellow"]
-    var time = 5
+    var time = 60
     var timer1 = Timer()
     var score1 = 0
 
@@ -68,11 +64,12 @@ class ViewController: UIViewController {
             time -= 1
             timer.text = "Timer: \(String(time))"
         } else {
-            time = 5
+            time = 60
             timer1.invalidate()
             performSegue(withIdentifier: "toResults", sender: score1)
         }
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
          if segue.identifier == "toResults" {
@@ -91,9 +88,11 @@ class ViewController: UIViewController {
         checkAnswer(isYes: false)
     }
     
+    
     @IBAction func yesButtonTapped(_ sender: Any) {
         checkAnswer(isYes: true)
     }
+    
     
     func checkAnswer(isYes: Bool) {
         var colorsMatch = true
@@ -126,31 +125,26 @@ class ViewController: UIViewController {
         
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         color1Label.text = topTextColor.textColor
         color2Label.text = Color().textColor //create a random color
+        
         color2Label.textColor = bottomColor.color
         
         timer1 = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.action), userInfo: nil, repeats: true)
-       
-        
-
-
     }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        score1 = 0
-//    }
     
     
     @IBAction func goBackToVC2(segue:UIStoryboardSegue){
         timer1 = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.action), userInfo: nil, repeats: true)
-        score1 = 0
-        score.text = "Score: \(score1)"
         
+        score1 = 0
+        time = 60
+        
+        score.text = "Score: \(score1)"
+        timer.text = "Timer: \(time)"
     }
-
 }
 

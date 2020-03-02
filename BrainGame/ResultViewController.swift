@@ -12,15 +12,12 @@ class ResultViewController: UIViewController {
     
     var expectScore: Int = 0
     
-    
-    
-
     @IBOutlet weak var resultScore: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            resultScore.text = "\(expectScore)"
+            resultScore.text = "Your Score: \(expectScore)"
        
     }
     
