@@ -8,67 +8,148 @@
 
 import UIKit
 
+enum Color: CaseIterable {
+    case red, blue, yellow
+    
+    var color: UIColor {
+        switch self {
+        case .red:
+            return .
+            red
+        case .blue:
+            return .blue
+        case .yellow:
+            return .yellow
+        }
+    }
+    var textColor: String {
+        switch self {
+        case .red:
+            return "red"
+        case .blue:
+            return "blue"
+        case .yellow:
+            return "yellow"
+        }
+    }
+    
+    init() {
+        self = Color.allCases[Int(arc4random_uniform(UInt32(Color.allCases.count)))]
+    }
+    
+    mutating func getRandomColor() {
+        self = Color.allCases[Int(arc4random_uniform(UInt32(Color.allCases.count)))]
+    }
+    
+}
+
 class ViewController: UIViewController {
     let colors = ["red", "blue", "yellow"]
-    let textColors = [UIColor.red, UIColor.blue, UIColor.yellow]
+    
+    
+    let textColors: [String] = ["red", "blue", "yellow"]
     var time = 5
     var timer1 = Timer()
-
-    
-    func pulsate() {
-        let pulse = CASpringAnimation(keyPath: "transform.scale")
-        pulse.duration = 0.4
-        pulse.fromValue = 0.98
-        pulse.toValue = 1.0
-        pulse.autoreverses = true
-        pulse.repeatCount = .infinity
-        pulse.initialVelocity = 0.5
-        pulse.damping = 1.0
-    }
-
+    var score1 = 0
 
     @IBOutlet weak var timer: UILabel!
-    
-    @IBOutlet weak var pauseOutlet: UIButton!
-    
+    @IBOutlet weak var score: UILabel!
+    @IBOutlet weak var yesOutlet: UIButton!
+    @IBOutlet weak var noOutlet: UIButton!
     @IBOutlet weak var color1Label: UILabel!
     @IBOutlet weak var color2Label: UILabel!
     
-    @objc func action(){
+    var topTextColor = Color()
+    var bottomColor = Color()
+    
+    
+    @objc func action() {
         if time != 0 {
             time -= 1
             timer.text = "Timer: \(String(time))"
         } else {
             time = 5
             timer1.invalidate()
-            
-            performSegue(withIdentifier: "toResults", sender: self)
+            performSegue(withIdentifier: "toResults", sender: score1)
         }
     }
     
-    @IBAction func pausePressed(_ sender: UIButton) {
-        color1Label.text = colors.randomElement()
-        color2Label.text = colors.randomElement()
-        color2Label.textColor = textColors.randomElement()
-        
-//        timer1 = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.action), userInfo: nil, repeats: true)
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         if segue.identifier == "toResults" {
+            let controller = segue.destination  as! ResultViewController
+            guard let score = sender as? Int else {
+                return
+            }
+            controller.expectScore = score
+            score1 = 0
+
+        }
     }
     
+    
+    @IBAction func noButtonTapped(_ sender: Any) {
+        checkAnswer(isYes: false)
+    }
+    
+    @IBAction func yesButtonTapped(_ sender: Any) {
+        checkAnswer(isYes: true)
+    }
+    
+    func checkAnswer(isYes: Bool) {
+        var colorsMatch = true
+        
+        if topTextColor == bottomColor {
+            colorsMatch = true
+        } else {
+            colorsMatch = false
+        }
+        
+        if isYes && colorsMatch {
+            score1+=1
+        } else if isYes && !colorsMatch {
+            score1-=1
+        } else if !isYes && !colorsMatch {
+            score1+=1
+        } else if !isYes && colorsMatch {
+            score1-=1
+        }
+        
+        score.text = "Score: \(score1)"
+
+        topTextColor.getRandomColor() //update color
+        bottomColor.getRandomColor() //get a new color
+        
+        color1Label.text = topTextColor.textColor
+        color2Label.text = Color().textColor //get a random color
+        
+        color2Label.textColor = bottomColor.color
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        color1Label.text = colors.randomElement()
-        color2Label.text = colors.randomElement()
-        color2Label.textColor = textColors.randomElement()
+        color1Label.text = topTextColor.textColor
+        color2Label.text = Color().textColor //create a random color
+        color2Label.textColor = bottomColor.color
         
         timer1 = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.action), userInfo: nil, repeats: true)
+       
+        
 
 
     }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        score1 = 0
+//    }
+    
+    
     @IBAction func goBackToVC2(segue:UIStoryboardSegue){
         timer1 = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.action), userInfo: nil, repeats: true)
+        score1 = 0
+        score.text = "Score: \(score1)"
+        
     }
 
 }
